@@ -1,0 +1,150 @@
+html,
+body,
+.background {
+  margin: 0;
+  width: 100%;
+  height: auto;
+  text-align:center
+}
+
+.background{
+  background-image:url(https://cdn.discordapp.com/attachments/185046628732895232/204497752091000832/bg3.svg);
+  background-size:50%;
+}
+
+.container {
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	height:100px;
+  background-image: url(../styles/wallpaper.png);
+  background-size:200%;
+  background-repeat: no-repeat;
+}
+
+.heading-div {
+  height: 50px;
+  box-sizing: border-box;
+}
+.heading-link{
+  text-decoration: none;
+}
+.heading-div h1 {
+  font-size: 40px;
+  font-weight: 700px;
+  text-align: center;
+  color: #fff;
+  margin: 10px 0 0 30px;
+}
+
+body,html {
+  height:100%;
+  margin:0;
+  padding:0;
+}
+.container {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100%;
+}
+.dropdown {
+  display:inline-block;
+  font-family:arial;
+  position:relative;
+  margin:15px;
+  font-size:16px;
+}
+.dropdown-button {
+  background: white;
+  min-width:160px;
+  color: black;
+  letter-spacing:0.025rem;
+  box-sizing:border-box;
+  padding:10px 30px 10px 20px;
+  border-radius:0px;
+  position:relative;
+  cursor:pointer;
+  transition:background .3s ease;
+}
+.dropdown-button:hover {
+  background:#2980b9;
+  transition:background .3s ease;
+}
+.triangle {
+  font-size:50%;
+  position:absolute;
+  right:10px;
+  top:-2px;
+  bottom:0;
+  margin-top:auto;
+  margin-bottom:auto;
+  height:5px;
+  color:black;
+}
+.dropdown ul.active {
+  visibility:visible;
+  transition:all .3s ease;
+  transform:scaleY(1);
+  color:#333;
+}
+.dropdown ul {
+  visibility:hidden;
+  overflow:hidden;
+  color:#fff;
+  transform-origin:top;
+  padding:0;
+  list-style:none;
+  transform:scaleY(0);
+  box-shadow:0px 2px 6px 0 rgba(0,0,0,0.2);
+  position:absolute;
+  left:0;
+  margin-top:2px;
+  top:100%;
+  min-width:90%;
+  transition:all .3s ease;
+}
+.dropdown button {
+  background:#fff;
+  box-sizing:border-box;
+  cursor:pointer;
+  transition:background .2s ease;
+  position:relative;
+  border: none;
+  width: 100%;
+  font-size: 15px;
+  text-align: left;
+}
+.dropdown button.check {
+  background:#f6f6f6;
+}
+.dropdown button.check:after {
+  content:'';
+  position:absolute;
+  height:15px;
+  width:3px;
+  background:#ccc;
+  top:0;
+  bottom:0;
+  margin-top:auto;
+  transform:rotate(40deg);
+  margin-bottom:auto;
+  right:15px;
+}
+.dropdown button.check:before {
+  content:'';
+  position:absolute;
+  height:3px;
+  width:9px;
+  background:#ccc;
+  top:6px;
+  bottom:0;
+  margin-top:auto;
+  transform:rotate(40deg);
+  margin-bottom:auto;
+  right:19px;
+}
+.dropdown button:hover {
+  background: grey;
+  transition:background .2s ease;
+}

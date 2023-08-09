@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+    <link rel="stylesheet" href="../static/styles/index.css">
+    <body>
+        <div class='container'>
+        <a href="/" class = "heading-link">
+            <div class = "heading-div">
+                <h1>Bayesian Optimization</h1>
+                <div class="underline"></div>
+            </div>
+        </a>
+            <div class='dropdown' id='parameter-dropdown'>
+                <div class='dropdown-button'>Select number of Parameters</div>
+                <span class='triangle'>&#9660;</span>
+                <ul class='dropdown-selection'>
+                    <form action="/singleparameter"><button>One</button></form>
+                    <form action="/twoparameter"><button>Two</button></form>
+                    <form action="/threeparameter"><button>Three</button></form>
+                    <form action="/fourparameter"><button>Four</button></form>
+                    <form action="/demo"><button>Or try a demo optimization</button></form>
+                </ul>
+            </div>
+        </div>
+    </body>
+    <script>
+        var activeDropdown = {};
+        document = document.open('../../templates/index.html');
+        document.getElementById('parameter-dropdown').addEventListener('click',showDropdown);
+        function showDropdown(event){
+            if (activeDropdown.id && activeDropdown.id !== event.target.id) {
+                activeDropdown.element.classList.remove('active');
+            }
+            //checking if a list element was clicked, changing the inner button value
+            if (event.target.tagName === 'LI') {
+            activeDropdown.button.innerHTML = event.target.innerHTML;
+            for (var i=0;i<event.target.parentNode.children.length;i++){
+            if (event.target.parentNode.children[i].classList.contains('check')) {
+                event.target.parentNode.children[i].classList.remove('check');
+            }
+        }
+        //timeout here so the check is only visible after opening the dropdown again
+        window.setTimeout(function(){
+            event.target.classList.add('check');
+        },500)
+    }
+            for (var i = 0;i<this.children.length;i++){
+                if (this.children[i].classList.contains('dropdown-selection')){
+                    activeDropdown.id = this.id;
+                    activeDropdown.element = this.children[i];
+                    this.children[i].classList.add('active');
+                }
+                //adding the dropdown-button to our object
+                else if (this.children[i].classList.contains('dropdown-button')){
+                    activeDropdown.button = this.children[i];
+                }
+            }
+        }
+        
+        window.onclick = function(event) {
+            if (!event.target.classList.contains('dropdown-button')) {
+                activeDropdown.element.classList.remove('active');
+            }
+        }
+        </script>
+</html>
+

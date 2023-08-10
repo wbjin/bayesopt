@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, Blueprint
 from . import config
+from .dashapp import upload
+import dash
 
 blueprint = Blueprint('oneParam', __name__)
 
@@ -9,5 +11,6 @@ def singleParameter():
 
 @blueprint.route('/singleOptimization')
 def singleOptimization():
-    return "Single Optimization"
+    dashApp = upload.create_dash_app(config.app)
+    return dash.init_app(app = dashApp)
 

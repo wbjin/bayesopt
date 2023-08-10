@@ -33,8 +33,10 @@ body,
   font-size: 40px;
   font-weight: 700px;
   text-align: center;
-  color: #fff;
+  color: white;
   margin: 10px 0 0 30px;
+  font-family: "ff-meta-serif-web-pro", serif; 
+  font-smooth: auto;
 }
 
 body,html {
@@ -56,7 +58,7 @@ body,html {
   font-size:16px;
 }
 .dropdown-button {
-  background: white;
+  background: rgba(255,255,255,0.65);
   min-width:160px;
   color: black;
   letter-spacing:0.025rem;
@@ -66,9 +68,15 @@ body,html {
   position:relative;
   cursor:pointer;
   transition:background .3s ease;
+  box-shadow: 0 35px 35px 0 rgba(126, 130, 145, 0.25);
+  font-family: "ff-meta-serif-web-pro", serif;
+  border-radius: 10px;
+  font-weight: 1000px;
+  font-smooth: auto;
 }
+
 .dropdown-button:hover {
-  background:#2980b9;
+  background:rgb(11, 178, 184);
   transition:background .3s ease;
 }
 .triangle {
@@ -86,12 +94,13 @@ body,html {
   visibility:visible;
   transition:all .3s ease;
   transform:scaleY(1);
-  color:#333;
+  color:rgb(11, 178, 184);
+
 }
 .dropdown ul {
   visibility:hidden;
   overflow:hidden;
-  color:#fff;
+  color:rgba(255,255,255,0.65);
   transform-origin:top;
   padding:0;
   list-style:none;
@@ -105,15 +114,17 @@ body,html {
   transition:all .3s ease;
 }
 .dropdown button {
-  background:#fff;
+  background:rgba(255,255,255,0.65);
   box-sizing:border-box;
   cursor:pointer;
   transition:background .2s ease;
   position:relative;
   border: none;
-  width: 100%;
+  width: 120%;
   font-size: 15px;
   text-align: left;
+  font-family: 'Whitney', sans-serif; 
+  font-smooth: auto; 
 }
 .dropdown button.check {
   background:#f6f6f6;
@@ -145,6 +156,6 @@ body,html {
   right:19px;
 }
 .dropdown button:hover {
-  background: grey;
+  background: rgb(11, 178, 184);
   transition:background .2s ease;
 }

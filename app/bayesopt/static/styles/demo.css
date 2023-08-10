@@ -1,6 +1,5 @@
+
 .heading-div {
-	background: url(../styles/wallpaper.png);
-  background-size: 1000%;
 	height: 50px;
 	box-sizing: border-box;
 }
@@ -23,6 +22,8 @@
 	color: white;
 	margin: 10px 0 0 30px;
 	font-weight: 700px;
+  font-family: "ff-meta-serif-web-pro", serif;
+  font-smooth: auto;
 }
   
   body,html {
@@ -37,32 +38,26 @@
 	height:100%;
 }
 
-html,
-body,
-.background {
+html{
   margin: 0;
   width: 100%;
   height: auto;
-  background: black;
-  text-align:center
+  background: url(../styles/wallpaper.png);
+  background-size: 200%;
+  text-align:center;
 }
-
 
 .title{
   font-smooth: auto;
   padding-top:80px;
-  font-family: 'Whitney', sans-serif;
-  color:#fff;
+  font-family: "ff-meta-serif-web-pro", serif;
+  color: rgba(255,255,255,0.65);
   font-size:40px
 }
-.background{
-  background-image:url(../styles/wallpaper.png);
-  background-size:200%;
-  background-repeat: no-repeat;
-}
+
 .step{
   font-smooth: auto;
-  font-family: 'Whitney', sans-serif;
+  font-family: "ff-meta-serif-web-pro", serif;
   font-weight:700;
   color:#fff;
   font-size:22px;
@@ -71,7 +66,7 @@ body,
 .link {
   text-decoration:none;
   color:#fff;
-  font-family: 'Whitney', sans-serif;
+  font-family: "ff-meta-serif-web-pro", serif;
   font-size:13px;
   opacity:0.8;
   margin-right:auto;
@@ -87,7 +82,7 @@ body,
   
 .instructions{
   font-smooth: auto;
-  font-family: 'Whitney', sans-serif;
+  font-family: "ff-meta-serif-web-pro", serif;
   font-weight:650;
   color:rgba(255,255,255,0.65);
   font-size:16px;

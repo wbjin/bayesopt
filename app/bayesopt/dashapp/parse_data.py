@@ -54,6 +54,33 @@ def parse(contents, filename):
                          'margin': 'auto',
                          'font-family': "ff-meta-serif-web-pro, serif"
                      }),
+        dcc.Dropdown(
+                    options = [{'label': 'Matern 5/2', 'value': 'matern'},
+                               {'label': 'Squared Exponential', 'value': 'sek'}], 
+                     id ='kernel-dropdown',
+                        placeholder = "Choose kernel",
+                     searchable = False,
+                     style = {
+                         'width': '60%',
+                         'text-align': 'center',
+                         'color': 'black',
+                         'margin': '10px',
+                         'margin': 'auto',
+                         'font-family': "ff-meta-serif-web-pro, serif"
+                     }),
+        dcc.Dropdown(options = [{'label': 'Probability of Improvement', 'value': 'pi'},
+                               {'label': 'Expected Improvement', 'value': 'ei'}],  
+                     id ='aq-dropdown',
+                     placeholder = "Choose acquisition function",
+                     searchable = False,
+                     style = {
+                         'width': '60%',
+                         'text-align': 'center',
+                         'color': 'black',
+                         'margin': '10px',
+                         'margin': 'auto',
+                         'font-family': "ff-meta-serif-web-pro, serif"
+                     }),
         html.Button(id = "submit-button", 
                     n_clicks = 0, 
                     children = "Submit", 

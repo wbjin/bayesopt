@@ -55,15 +55,21 @@ def updateOutput(content, filename):
     
 @callback(Output('output-optimize', 'children'),
           Input('submit-button', 'n_clicks'),
-          State('dropdown-button', 'value'))
-
-def optimize(n_clicks, value):
+          State('dropdown-button', 'value'),
+          State('kernel-dropdown', 'value'),
+          State('aq-dropdown', 'value'))
+def optimize(n_clicks, optimizationTarget, kernel, acquisition):
     if n_clicks:
-        config.optimizer.setOptimizationTarget(value)
+        n_clicks = 0
+        config.optimizer.setOptimizationTarget(optimizationTarget)
+        config.optimizer.setKernel(kernel)
+        config.optimizer.setAcquisition(acquisition)
         config.optimizer.run() 
         figure = config.optimizer.plot()
+        result = config.optimizer.result()
         return html.Div([
-            html.H5("Optimization reults: "),
+            html.H5("Optimization results: "),
+            html.P(result),
             dcc.Graph(
                 figure = figure,
                 style = {
@@ -71,5 +77,5 @@ def optimize(n_clicks, value):
                     'margin': 'auto',
                     'align-items': 'center'
                 }
-            )
+            ),
             ])

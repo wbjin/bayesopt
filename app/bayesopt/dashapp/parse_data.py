@@ -7,27 +7,34 @@ from plotly import graph_objects as go
 import torch
 from .optimizer import Optimizer
 
+class dataSizeException(Exception):
+    pass
+
+class tooManyParameters(Exception):
+    pass
+
 def parse(contents, filename):
     content_type, content_string = contents.split(',')
 
     decoded = base64.b64decode(content_string)
+    df = pd.read_csv(
+    io.StringIO(decoded.decode('utf-8'))) 
     try:
-        df = pd.read_csv(
-            io.StringIO(decoded.decode('utf-8')))
-    except Exception as e:
-        print(e)
+        optimizer, figure = addToOptimizer(df)
+    except dataSizeException:
         return html.Div([
-            'There was an error processing this file.'
-        ])
-    
-    try:
-        optimizer = addToOptimizer(df)
-    except Exception as e:
+            'Too many data points, must be less than or equal to 200'
+        ]), "error"
+    except tooManyParameters:
         return html.Div([
-            'There was an error processing this file.'
-        ]) 
+            'There were too many parameters in the input file'
+        ]), "error"
+    except Exception as e:
+        print(e)    
+        return html.Div([
+            'There was an error processing the file'
+        ]), "error"
     
-    figure = go.Figure(go.Scatter(x = df["param1"], y = df["output"], mode = "markers", name = "Your Data"))
 
     return html.Div([
         html.H5(filename),
@@ -68,8 +75,7 @@ def parse(contents, filename):
                          'margin': 'auto',
                          'font-family': "ff-meta-serif-web-pro, serif"
                      }),
-        dcc.Dropdown(options = [{'label': 'Probability of Improvement', 'value': 'pi'},
-                               {'label': 'Expected Improvement', 'value': 'ei'}],  
+        dcc.Dropdown(options = [{'label': 'Probability of Improvement', 'value': 'pi'}],  
                      id ='aq-dropdown',
                      placeholder = "Choose acquisition function",
                      searchable = False,
@@ -102,7 +108,34 @@ def addToOptimizer(df):
     if dimensions == 2:
         X = torch.tensor(df["param1"])
         y = torch.tensor(df["output"])
+        if len(y) > 200:
+            raise dataSizeException
         optimizer = Optimizer(X, y)
-        return optimizer
+        figure = go.Figure(go.Scatter(x = df["param1"], y = df["output"], mode = "markers", name = "Your Data"))
+        figure.update_layout(xaxis_title = "param1", yaxis_title = "output")
+        return optimizer, figure
+    elif dimensions == 3:
+        x1 = torch.tensor(df["param1"])
+        x2 = torch.tensor(df["param2"])
+        X = torch.cat((
+            x1.contiguous().view(x1.numel(), 1),
+            x2.contiguous().view(x2.numel(), 1)),
+            dim=1
+        )
+        y = torch.tensor(df["output"])
+        if len(y) > 200:
+            raise dataSizeException
+        optimizer = Optimizer(X, y)
+        x1 = []
+        x2 = []
+        for item in X:
+            x1.append(item[0].item())
+            x2.append(item[1].item())
+        figure = go.Figure(data = go.Scatter3d(x = x1, y = x2, z = y, mode = "markers", name = "Your Data"))
+        figure.update_layout(scene = dict(
+                    xaxis_title='param1',
+                    yaxis_title='param2',
+                    zaxis_title='output'),)
+        return optimizer, figure
     else:
         raise Exception('error')

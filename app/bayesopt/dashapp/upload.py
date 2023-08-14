@@ -37,7 +37,8 @@ def create_dash_app(flaskApp):
         multiple=False
     ),
     html.Div(id='output-data-upload'),
-    html.Div(id='output-optimize')
+    html.Div(id='output-optimize'),
+    html.Div(style = {'height': '50px'})
     ])    
     
     return dashApp
@@ -65,6 +66,12 @@ def optimize(n_clicks, optimizationTarget, kernel, acquisition):
         config.optimizer.setKernel(kernel)
         config.optimizer.setAcquisition(acquisition)
         config.optimizer.run() 
+        # try:
+        # except Exception as e:
+        #     print(e)
+        #     return html.Div([
+        #         'There was an error running the optimization'
+        #     ])
         figure = config.optimizer.plot()
         result = config.optimizer.result()
         return html.Div([
@@ -77,5 +84,5 @@ def optimize(n_clicks, optimizationTarget, kernel, acquisition):
                     'margin': 'auto',
                     'align-items': 'center'
                 }
-            ),
+            )
             ])
